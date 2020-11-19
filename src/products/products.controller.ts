@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Param, Delete, Put} from '@nestjs/common';
+import { Controller, Get, Post, Body, Param, Delete, Put, HttpStatus, Patch} from '@nestjs/common';
 import { validate } from 'class-validator';
 import { ProdDto } from './dto/products.dto'
 import { ProductsService } from './products.service';
@@ -9,33 +9,47 @@ export class ProductsController {
 
     @Get()
     getProducts(){
-        return this.prodservice.getProductos();
+        return {
+            statusCode: HttpStatus.OK,
+            data: await this.prodservice.verTodosProductos(),
+        };
     }
+
+
     @Post()
     async create(@Body() prodDto: ProdDto) { 
         const prod = new ProdDto();
         prod.nombre=prodDto.nombre;
         prod.descripcion=prodDto.descripcion;
         const errores = await validate(prod);
-        if(errores.length === 0)
-         this.prodservice.guardarProducto(prodDto);
-
-
+        if(errores.length === 0){
+            return {
+                statusCode: HttpStatus.OK,
+                message: 'Producto Creado',
+                data: await this.prodservice.crearProducto(prodDto);
+            };
+        }
         return prodDto;
     }
 
-    @Get(':id')
-    findOne(@Param('id') id: string) {
-        return `we get the dog with the id ${id}`;
-    }
 
-    @Put(':id')
-    update(@Param('id') id: string) {
-        return `we update the dog with the id ${id}`;
+    @Patch(':id')
+    async actualizarProducto(@Param('id') id: number, @Body() data: Partial<ProdDto>) {
+
+        return {
+            statusCode: HttpStatus.OK,
+            message: 'Producto Actualizado',
+            date: await this.prodservice.ActualizarProducto(id,data),
+
+        };
     }
 
     @Delete(':id')
-    remove(@Param('id') id: string) {
-        return `we delete the dog with the id ${id}`;
+    async eliminarProducto(@Param('id') id: number){
+        await this.prodservice.EliminarProducto(id);
+        return {
+            statusCode: HttpStatus.OK,
+            message: 'El producto fue eliminado '
+        }
     }
 }
