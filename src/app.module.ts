@@ -28,13 +28,13 @@ import { TarjetaModule } from './tarjeta/tarjeta.module';
             password:'Julyok64*',
             database:'db_main',
           },
-    slaves:[{
-          host:'192.168.100.119',
-          port:3306,
-          username:'rep',
-          password:'Julyok64*',
-          database:'db_replica'
-    }]  
+          slaves:[{
+              host:'192.168.100.119',
+              port:3306,
+              username:'rep',
+              password:'Julyok64*',
+              database:'db_replica'
+          }]  
     }
     
 
