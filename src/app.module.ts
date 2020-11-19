@@ -16,17 +16,19 @@ import { PagoModule } from './pago/pago.module';
 import { TarjetaModule } from './tarjeta/tarjeta.module';
 
 @Module({
-  imports: [/*TypeOrmModule.forRoot({
+  imports: [TypeOrmModule.forRoot({
     type:'mysql',
-    host:'localhost',
+    host:'192.168.100.118',
     port:3306,
-    username:'root',
-    password:'root',
-    database:'test',
+    username:'base',
+    password:'Julyok64*',
+    database:'db_main',
     entities:[Producto,Cliente,DetalleFactura,Factura,Pago,Tarjeta],
     synchronize:true,
-  }),*/ProductsModule, ClienteModule, DetalleFacturaModule, FacturaModule, PagoModule, TarjetaModule],
+  }),ProductsModule, ClienteModule, DetalleFacturaModule, FacturaModule, PagoModule, TarjetaModule],
   controllers: [AppController],
   providers: [AppService],
 })
-export class AppModule {}
+export class AppModule {
+
+}
