@@ -8,12 +8,13 @@ export class ProductsController {
     constructor(private prodservice:ProductsService){}
 
     @Get()
-    getProducts(){
+    async getProducts(){
         return {
             statusCode: HttpStatus.OK,
             data: await this.prodservice.verTodosProductos(),
         };
     }
+
 
 
     @Post()
@@ -26,11 +27,17 @@ export class ProductsController {
             return {
                 statusCode: HttpStatus.OK,
                 message: 'Producto Creado',
-                data: await this.prodservice.crearProducto(prodDto);
+                data: await this.prodservice.crearProducto(prodDto),
             };
+        }else{
+            return {error:'No se pudo guardar'};
         }
-        return prodDto;
+           
+        
+        
     }
+
+
 
 
     @Patch(':id')
