@@ -18,13 +18,27 @@ import { TarjetaModule } from './tarjeta/tarjeta.module';
 @Module({
   imports: [TypeOrmModule.forRoot({
     type:'mysql',
-    host:'192.168.100.118',
-    port:3306,
-    username:'base',
-    password:'Julyok64*',
-    database:'db_main',
     entities:[Producto,Cliente,DetalleFactura,Factura,Pago,Tarjeta],
     synchronize:true,
+    replication:{
+          master:{
+            host:'192.168.100.118',
+            port:3306,
+            username:'base',
+            password:'Julyok64*',
+            database:'db_main',
+          },
+    slaves:[{
+          host:'192.168.100.119',
+          port:3306,
+          username:'rep',
+          password:'Julyok64*',
+          database:'db_replica'
+    }]  
+    }
+    
+
+
   }),ProductsModule, ClienteModule, DetalleFacturaModule, FacturaModule, PagoModule, TarjetaModule],
   controllers: [AppController],
   providers: [AppService],
