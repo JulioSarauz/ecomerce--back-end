@@ -1,6 +1,6 @@
-export class Tarjeta {
+export class TarjetaDto {
     
-    id: number;
+    id_tarjeta: number;
     codigo: string;
     fecha: number;
     cvv: number;

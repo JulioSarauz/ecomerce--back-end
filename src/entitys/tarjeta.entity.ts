@@ -1,10 +1,11 @@
 // id numerotarjeta fecha fecha cvv
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, JoinColumn } from 'typeorm';
+import { Cliente } from './cliente.entity';
 
 @Entity()
 export class Tarjeta {
   @PrimaryGeneratedColumn()
-  id: number;
+  id_tarjeta: number;
   @Column()
   codigo: string;
   @Column()
@@ -12,4 +13,9 @@ export class Tarjeta {
   @Column()
   cvv: number;
 
+  @ManyToOne(type=> Cliente, cliente => cliente.fk_tarjeta)
+  @JoinColumn()
+  fk_cliente:Cliente[];
+
+  
 }

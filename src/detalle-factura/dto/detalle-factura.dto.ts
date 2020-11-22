@@ -1,6 +1,6 @@
 export class DetalleFacturaDto {
 
-    id: number;
+    id_detallefactura: number;
     id_factura: number;
     id_cliente: number;
     id_pago: number;

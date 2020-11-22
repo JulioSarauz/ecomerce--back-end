@@ -19,22 +19,11 @@ export class ProductsController {
 
     @Post()
     async create(@Body() prodDto: ProdDto) { 
-        const prod = new ProdDto();
-        prod.nombre=prodDto.nombre;
-        prod.descripcion=prodDto.descripcion;
-        const errores = await validate(prod);
-        if(errores.length === 0){
             return {
                 statusCode: HttpStatus.OK,
                 message: 'Producto Creado',
                 data: await this.prodservice.crearProducto(prodDto),
             };
-        }else{
-            return {error:'No se pudo guardar'};
-        }
-           
-        
-        
     }
 
 

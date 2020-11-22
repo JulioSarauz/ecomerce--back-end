@@ -1,7 +1,7 @@
 
 export class PagoDto {
     
-  id: number;
+  id_pago: number;
   tipo: string;
 
 }

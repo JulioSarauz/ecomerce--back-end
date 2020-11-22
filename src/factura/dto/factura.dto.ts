@@ -1,6 +1,6 @@
 export class FacturaDto {
     
-    id: number;
+    id_factura: number;
     id_pago: number;
     fecha: Date;
     subtotal: number;

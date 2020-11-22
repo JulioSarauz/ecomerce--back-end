@@ -1,9 +1,10 @@
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, OneToMany, JoinColumn } from 'typeorm';
+import { DetalleFactura } from './detallefactura.entity';
 
 @Entity()
 export class Producto {
   @PrimaryGeneratedColumn()
-  id: number;
+  id_producto: number;
 
   @Column()
   nombre: string;
@@ -11,7 +12,11 @@ export class Producto {
   @Column()
   descripcion: string;
 
-  @Column({ default: true })
+  @Column()
   precio: string;
+
+
+  @OneToMany(type => DetalleFactura, detallefactura => detallefactura.fk_producto )
+  fk_detallefactura:Producto;
 
 }

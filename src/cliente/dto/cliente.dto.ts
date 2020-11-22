@@ -1,6 +1,6 @@
 
 export class clienteDto {
-    id: number;
+    id_cliente: number;
     nombres: string;
     cedula: string;
     correo: string;

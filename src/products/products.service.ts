@@ -9,23 +9,6 @@ import { ProductsController } from './products.controller';
 
 @Injectable()
 export class ProductsService {
-    /*productos: ProdDto[]=[];
-
-    getProductos():ProdDto[]{
-        return this.productos;
-    }
-
-    guardarProducto(prod:ProdDto):ProdDto{
-        let newProd = {
-            id:prod.id,
-            nombre: prod.nombre,
-            descripcion: prod.descripcion,
-            precio: prod.precio
-        };
-        this.productos.push(newProd);
-        return newProd;
-    }*/
-
     constructor(
         @InjectRepository(Producto)
         private prodRepositorio: Repository<Producto>,
@@ -44,14 +27,14 @@ export class ProductsService {
     }
 
     //ACTUALIZAR PRODUCTO
-    async ActualizarProducto(id:number, data:Partial<ProdDto>){
-        await this.prodRepositorio.update({ id },data);
-        return await this.prodRepositorio.findOne({ id });
+    async ActualizarProducto(id_producto:number, data:Partial<ProdDto>){
+        await this.prodRepositorio.update({ id_producto },data);
+        return await this.prodRepositorio.findOne({ id_producto });
     }
 
     //ELIMINAR PRODUCTO
-    async EliminarProducto(id:number){
-        await this.prodRepositorio.delete({ id });
+    async EliminarProducto(id_producto:number){
+        await this.prodRepositorio.delete({ id_producto });
         return {deleted: true};
     }
 
