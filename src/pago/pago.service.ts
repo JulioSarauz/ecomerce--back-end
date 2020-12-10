@@ -13,7 +13,7 @@ export class PagoService {
 
     //RETORNAR TODOS LOS USUARIOS
     async verTodo(){
-        return await this.userRepositorio.find();
+        return await this.userRepositorio.find({select:["id_pago","tipo"]});
     }
 
     //RETORNAR 1 USUARIO

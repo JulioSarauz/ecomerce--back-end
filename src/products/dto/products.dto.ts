@@ -10,6 +10,6 @@ export class ProdDto {
     descripcion: string;
     @IsNotEmpty()
     precio:string;
-
- 
+    @IsNotEmpty()
+    estado:number;
 }

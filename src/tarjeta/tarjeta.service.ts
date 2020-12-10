@@ -12,8 +12,8 @@ export class TarjetaService {
     ){}
 
     //RETORNAR TODOS LOS USUARIOS
-    async verTodo(){
-        return await this.userRepositorio.find();
+    async verTodo(idUsuario:number){
+        return await this.userRepositorio.find({where:{fk_cliente:idUsuario}});
     }
 
     //RETORNAR 1 USUARIO
@@ -26,9 +26,13 @@ export class TarjetaService {
     }
 
     //INGRESAR USUARIOS
-    async crear(data:TarjetaDto){
-        const user = this.userRepositorio.create(data);
-        await this.userRepositorio.save(data);
+    async crear(
+            tarjeta:Tarjeta,
+            idUsuario:number
+        ){
+        tarjeta.fk_cliente = idUsuario;
+        const user = this.userRepositorio.create(tarjeta);
+        await this.userRepositorio.save(tarjeta);
         return user;
 
     }

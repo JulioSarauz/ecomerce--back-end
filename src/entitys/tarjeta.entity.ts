@@ -12,10 +12,12 @@ export class Tarjeta {
   fecha: number;
   @Column()
   cvv: number;
+  @Column()
+  estado:number;
 
   @ManyToOne(type=> Cliente, cliente => cliente.fk_tarjeta)
   @JoinColumn()
-  fk_cliente:Cliente[];
+  fk_cliente:Cliente | number;
 
   
 }

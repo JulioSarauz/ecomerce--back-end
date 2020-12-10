@@ -4,5 +4,5 @@ export class TarjetaDto {
     codigo: string;
     fecha: number;
     cvv: number;
-  
+    estado:number;
   }

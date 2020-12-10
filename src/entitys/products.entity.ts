@@ -15,6 +15,8 @@ export class Producto {
   @Column()
   precio: string;
 
+  @Column()
+  estado:number;
 
   @OneToMany(type => DetalleFactura, detallefactura => detallefactura.fk_producto )
   fk_detallefactura:Producto;

@@ -1,32 +1,39 @@
-import { Controller, Get, Post, Body, Param, Delete, Put, HttpStatus, Patch} from '@nestjs/common';
+import { Controller, Get, Post, Body, Param, Delete, Put, HttpStatus, Patch, Query} from '@nestjs/common';
 import { TarjetaService } from './tarjeta.service';
 import { TarjetaDto } from './dto/tarjeta.dto';
+import { Tarjeta } from '../entitys/tarjeta.entity';
 
 @Controller('tarjeta')
 export class TarjetaController {
     constructor(private service:TarjetaService){}
 
     @Get()
-    async getTodo(){
+    async getTodo(
+        @Query('id')id:number
+    ){
+        console.log(id);
+        
         return{
             statusCode: HttpStatus.OK,
-            data: await this.service.verTodo(),
+            data: await this.service.verTodo(id),
         }
     }
 
-    @Get(':id')
-    async buscar(@Param('id') id: number){
-        let user =  this.service.buscar(id);
-        return user;
-    }
-
+  
 
     @Post()
-    async create(@Body() detallefacturaDto: TarjetaDto) { 
+    async create(@Body() datosFactura:{
+        datosTarjeta: Tarjeta,
+        idUsuario:number
+        }
+        ) { 
+            console.log(datosFactura);
+            
+
             return {
                 statusCode: HttpStatus.OK,
                 message: 'Creado',
-                data: await this.service.crear(detallefacturaDto),
+                data: await this.service.crear(datosFactura.datosTarjeta, datosFactura.idUsuario),
             };
     }
 
