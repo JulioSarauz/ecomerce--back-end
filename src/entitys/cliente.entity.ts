@@ -27,7 +27,7 @@ export class Cliente {
 
   @OneToOne(type => Usuario, usuario => usuario.fk_cliente)
   @JoinColumn()
-  fk_usuario:Usuario;
+  fk_usuario:Usuario | number;
 
   @OneToMany(type => Factura, factura => factura.fk_cliente)
   fk_factura:Factura;

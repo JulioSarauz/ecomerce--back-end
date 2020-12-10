@@ -39,8 +39,7 @@ import { Usuario } from './entitys/usuario.entity';
       }]  
       },
     entities:[Producto,Cliente,DetalleFactura,Factura,Pago,Tarjeta,Usuario],
-    synchronize:true,
-   
+    synchronize:true
     
 
 

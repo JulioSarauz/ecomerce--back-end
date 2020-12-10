@@ -1,6 +1,7 @@
-import { Controller, Get, Post, Body, Param, Delete, Put, HttpStatus, Patch} from '@nestjs/common';
+import { Controller, Get, Post, Body, Param, Delete, Put, HttpStatus, Patch, Query} from '@nestjs/common';
 import { ClienteService } from './cliente.service';
 import { clienteDto } from './dto/cliente.dto';
+import { Cliente } from '../entitys/cliente.entity';
 
 
 @Controller('cliente')
@@ -24,11 +25,16 @@ export class ClienteController {
 
 
     @Post()
-    async create(@Body() clienteDto: clienteDto) { 
+    async create(
+        @Body() 
+        datosCliente:{
+            clienteDto: Cliente;
+            idUsuario:number;
+        }) { 
             return {
                 statusCode: HttpStatus.OK,
                 message: 'Cliente Creado',
-                data: await this.clienteservice.crearUsuario(clienteDto),
+                data: await this.clienteservice.crearUsuario(datosCliente.clienteDto,datosCliente.idUsuario),
             };
     }
 

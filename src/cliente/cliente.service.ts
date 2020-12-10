@@ -27,9 +27,13 @@ export class ClienteService {
 
 
     //INGRESAR USUARIOS
-    async crearUsuario(data:clienteDto){
-        const user = this.userRepositorio.create(data);
-        await this.userRepositorio.save(data);
+    async crearUsuario(
+       cliente:Cliente,
+       idusuario:number
+    ){
+        cliente.fk_usuario = idusuario;
+        const user = this.userRepositorio.create(cliente);
+        await this.userRepositorio.save(cliente);
         return user;
 
     }

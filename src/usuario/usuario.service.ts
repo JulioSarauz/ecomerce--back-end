@@ -13,7 +13,7 @@ export class UsuarioService {
 
     //RETORNAR TODOS LOS USUARIOS
     async verTodosUsuarios(){
-        return await this.userRepositorio.find();
+        return await this.userRepositorio.find({relations:["fk_cliente"]});
     }
 
     //RETORNAR 1 USUARIO
