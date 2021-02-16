@@ -31,9 +31,11 @@ export class TarjetaService {
             idUsuario:number
         ){
         tarjeta.fk_cliente = idUsuario;
-        const user = this.userRepositorio.create(tarjeta);
-        await this.userRepositorio.save(tarjeta);
-        return user;
+        console.log(tarjeta);
+        
+        //const user = this.userRepositorio.create(tarjeta);
+        return await this.userRepositorio.save(tarjeta);
+        
 
     }
 

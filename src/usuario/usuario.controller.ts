@@ -15,15 +15,16 @@ export class UsuarioController {
         }
     }
 
-    @Get(':id')
-    async buscarUsuario(@Param('id') id: number){
-        let user =  this.userservice.buscarUsuario(id);
+    @Get(':usr')
+    async buscarUsuario(@Param('usr') usr: string){
+        let user =  this.userservice.buscarUsuario(usr);
         return user;
     }
 
 
     @Post()
     async create(@Body() userDto: UserDto) { 
+            
             return {
                 statusCode: HttpStatus.OK,
                 message: 'Usuario Creado',

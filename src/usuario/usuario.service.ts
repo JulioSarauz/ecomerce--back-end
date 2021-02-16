@@ -17,10 +17,10 @@ export class UsuarioService {
     }
 
     //RETORNAR 1 USUARIO
-    async buscarUsuario(id_usuario:number):Promise<Usuario>{
+    async buscarUsuario(user:string):Promise<Usuario>{
         return getManager().getRepository(Usuario).findOne({
             where:{
-                id_usuario:id_usuario
+                user:user
             }
         });
     }

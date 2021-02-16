@@ -31,7 +31,8 @@ export class ProductsController {
 
     @Patch(':id')
     async actualizarProducto(@Param('id') id: number, @Body() data: Partial<ProdDto>) {
-
+        console.log(id);
+        console.log(data);
         return {
             statusCode: HttpStatus.OK,
             message: 'Producto Actualizado',
@@ -39,6 +40,8 @@ export class ProductsController {
 
         };
     }
+
+    
 
     @Delete(':id')
     async eliminarProducto(@Param('id') id: number){
